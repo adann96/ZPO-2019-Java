@@ -1,68 +1,35 @@
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.String;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("TO JEST PROGRAM DO NUMERU PESEL");
-        String sex = "", peselStr, answ;
-        List<Pesel> peselList = new ArrayList<>();
-        int i;
+        String answer;
+        int liczba = 0b1101_1000;
 
-        do
-        {
-            i = 0;
-            System.out.println("Podaj proszę PESEL: ");
-            peselStr = input.nextLine();
-            try
-            {
-                peselList.add(new Pesel(getYourPesel(peselStr)));
-
-                //Displays the whole list
-                for(Pesel var : peselList)
-                {
-                    if(Integer.valueOf(var.yourPesel.substring(9,10)) % 2 == 0){
-                        sex = "Female";
-                    }
-                    else if(Integer.valueOf(var.yourPesel.substring(9,10)) % 2 == 1){
-                        sex = "Male";
-                    }
-
-                    i++;
-                    //---------------------------------------------------------------------------//
-                    //Wiek dziewiętnasty
-                    if (var.yourPesel.substring(2,3).equals("8")) { System.out.println("Index: " + i + " | " + var.yourPesel + " | " + "---- | Year: 18" + var.yourPesel.substring(0, 2) + " | Month: 0" + var.yourPesel.substring(3, 4) + " | Day: " + var.yourPesel.substring(4,6) + " | Sex: " + sex); }
-                    else if (var.yourPesel.substring(2,3).equals("9")) { System.out.println("Index: " + i + " | " + var.yourPesel + " | " + "---- | Year: 18" + var.yourPesel.substring(0, 2) + " | Month: 1" + var.yourPesel.substring(3, 4) + " | Day: " + var.yourPesel.substring(4,6) + " | Sex: " + sex); }
-
-                    //---------------------------------------------------------------------------//
-                    //Wiek dwudziesty
-                    else if (var.yourPesel.substring(2,3).equals("0") || var.yourPesel.substring(2,3).equals("1")) { System.out.println("Index: " + i + " | " + var.yourPesel + " | " + "---- | Year: 19" + var.yourPesel.substring(0, 2) + " | Month: " + var.yourPesel.substring(2, 4) + " | Day: " + var.yourPesel.substring(4,6) + " | Sex: " + sex); }
-
-                    //---------------------------------------------------------------------------//
-                    //Wiek dwudziestypierwszy
-                    else if (var.yourPesel.substring(2,3).equals("2")) { System.out.println("Index: " + i + " | " + var.yourPesel + " | " + "---- | Year: 20" + var.yourPesel.substring(0, 2) + " | Month: 0" + var.yourPesel.substring(3, 4) + " | Day: " + var.yourPesel.substring(4,6) + " | Sex: " + sex); }
-                    else if (var.yourPesel.substring(2,3).equals("3")) { System.out.println("Index: " + i + " | " + var.yourPesel + " | " + "---- | Year: 20" + var.yourPesel.substring(0, 2) + " | Month: 1" + var.yourPesel.substring(3, 4) + " | Day: " + var.yourPesel.substring(4,6) + " | Sex: " + sex); }
-                }
+        String hex,dec, troj;
+        System.out.println("TO JEST PROGRAM DO KONWERSJI LICZB");
+        do {
+            System.out.print("Podaj podstawę: ");
+            answer = input.next();
+            switch (answer) {
+                case "Dziesięć":
+                    dec = Integer.toString(liczba,10);
+                    System.out.print("Liczba decymalna: " + dec);
+                    break;
+                case "Szesnaście":
+                    hex = Integer.toString(liczba, 16);
+                    System.out.print("Liczba hexadecymalna: " + hex);
+                    break;
+                case "Trzy":
+                    troj = Integer.toString(liczba, 3);
+                    System.out.print("Liczba trójkowa: " + troj);
+                    break;
+                default:
+                    System.out.println("Wybrałeś złą liczbę!");
             }
-            catch(StringtTooLongException ex)
-            {
-                System.out.println(ex.getMessage());
-            }
-
-            System.out.println("Czy to już koniec?: ");
-            answ = input.nextLine();
-
-        } while(answ.equals("No"));
-
-
-    }
-
-    public static String getYourPesel(String psl)
-    {
-        return psl;
+        } while(!answer.equals("Dziesięć") && !answer.equals("Szesnaście") && !answer.equals("Trzy"));
+        input.close();
     }
 }
